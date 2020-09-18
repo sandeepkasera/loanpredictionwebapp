@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+<title>Loan Predction
+</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<style>
+body{
+margin:0px;
+padding:0px;
+  background-image: linear-gradient(-90deg, red, orange);
+
+}
+
+.top-heading{
+text-align:center;
+background-color:black;
+color:white;
+padding:6px;
+width:100%;
+height:36px;
+}
+
+#loan{
+opacity:0.9;
+    filter: grayscale(80%);
+	width:auto;
+	height:300px;
+	margin-left:30px;
+
+}
+.form-layout{
+margin:20px;
+}
+label {
+font-size:20px;
+  padding: 2px 5px 2px 5px;
+}
+
+input[type=text],input[type=number], select{
+  width: 80%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+button[type=submit] {
+  background-color: brown;
+  color: white;
+  margin:10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}
+button[type=submit]:hover {
+  background-color: grey;
+}
+
+.footer{
+margin:0px;
+padding:0px;
+text-align:center;
+background-color:grey;
+color:white;
+padding:10px;
+width:100%;
+height:42px;
+}
+
+
+
+</style>
+<body>
+
+<div class="top-heading">
+<P>LOAN PREDICTION</P>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-5">
+			<strong>
+			<br>
+			Do You worry to go in Bank !<br>
+			Check Your Eligibility for Loan at Home ....
+			<br>
+			<br> 
+			</strong>
+			<img src = "{{url_for('static',filename='images/loan1.jpeg')}}">
+		</div>
+		
+	
+	
+		<div class="col-md-7">
+			<div class="form-layout">
+
+		     <!-- Main Input For Receiving Query to our ML -->
+		<form action="{{ url_for('predict')}}"method="post">
+
+			
+			<div class="row">
+				<div class="col-md-5">
+					<label >Gender</label> 
+				</div>
+				<div class="col-md-7">
+				    	<label for="Female" >Female</label>
+						<input id ="Female" type="radio" name="gender" value="Female" required /> 
+
+				    	<label for="Male" >Male</label>
+						<input id="Male" type="radio" name="gender" value="Male"  /><br>
+				</div>			
+			</div>
+
+			<div class="row">
+				<div class="col-md-5">
+					<label >Marital Status</label>
+				</div>
+				<div class="col-md-7">
+					<label for="Married" >Married</label>
+					<input id="Married" type="radio" name="Marital_status" value="Yes" required />
+					
+					<label for="Unmarried" >Unmarried</label> 
+					<input id="Unmarried" type="radio" name="Marital_status" value="No"/><br>
+			
+				</div>
+			
+			
+			</div>
+			
+			<div class="row">
+				<div class="col-md-5">
+					<label for="dependents" >Dependents</label> 
+				</div>
+				<div class="col-md-7">
+					<select id="dependents" name="dependents">
+		<option value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3+">3+</option>
+		</select><br>
+				</div>
+			
+			
+			</div>
+			
+			<div class="row">
+				<div class="col-md-5">
+					<label for="SelfEmployed" >SelfEmployed</label> 
+				</div>
+				<div class="col-md-7">
+					<select id="SelfEmployed" name="SelfEmployed">
+		<option value="Yes">Yes</option>
+		<option value="No">No</option>
+		</select><br>
+				</div>
+			
+			
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<label for="Applicantincome" >Applicant income</label>
+				</div>
+				<div class="col-md-7">
+					<input id="Applicantincome" type="number" name="Applicantincome" min="1" max="500000" required /><br>
+				</div>
+			
+			
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<label for="coapplicantincome" >Co-Applicantincome</label> 
+				</div>
+				<div class="col-md-7">
+					<input id="coapplicantincome" type="number" name="coapplicantincome" min="1" max="500000" required> <br>
+				</div>
+			
+			
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<label for="loanamount" >Loan Amount</label>
+				</div>
+				<div class="col-md-7">
+					<input id="loanamount" type="number" name="loanamount" min="1" max="50000" required /><br>
+				</div>
+			
+			
+			</div>
+		
+	
+				
+			<div class="row">
+				<div class="col-md-5">
+					<label for="loanamountterm" >Loan Amount term</label> 
+				</div>
+						<div class="col-md-7">
+				<input id="loanamountterm" type="number" name="loanamountterm" min="1" max="500000" required /><br>
+				</div>
+					
+					
+			</div>
+				
+		
+			<div class="row">
+				<div class="col-md-5">
+					<label for="credithistory" >Credit history</label> 
+				</div>
+						<div class="col-md-7">
+					<input id="credithistory" type="number" name="credithistory" min="1" max="10" required /><br>		    
+				</div>
+					
+					
+			</div>
+				
+		<div class="row">
+						<div class="col-md-5">
+		<label for="education">Education</label>  
+						</div>
+						<div class="col-md-7">
+		<select id="education" name="education">
+		<option value="Graduate">Graduate</option>
+		<option value="Not Graduate">Not Graduate</option>
+		</select><br>
+							</div>
+					
+					
+		</div>
+				
+		<div class="row">
+			<div class="col-md-5">
+			<label for="propertyarea">Property Area</label>				  
+					</div>
+				<div class="col-md-7">
+				<select id="propertyarea" name="propertyarea">
+		<option value="Urban">Urban</option>
+		<option value="Rural">Rural</option>
+		<option value="SemiUrban">Semi Urban</option>
+		</select><br>
+				</div>
+							
+							
+				</div>
+		<div class="row">
+								<div class="col-md-12" style=" text-align:center;"   >
+			    <button type="submit" >Predict</button>		</div>	
+							
+		</div>
+					
+		<div class="row">
+								<div class="col-md-12" style=" text-align:center;"   >
+			   <strong> {{ prediction_text }} </strong>
+
+		</div>
+							
+							
+		</div>
+						
+
+
+		</form>
+
+		</div>
+
+	</div>
+
+</div>
+
+</div>
+
+<footer> 
+
+        <div class="footer">
+        
+             <p> Made By - Sandeep Kasera</p>
+
+        
+         </div>
+
+</footer>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
