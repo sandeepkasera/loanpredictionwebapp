@@ -61,7 +61,7 @@ def predict():
     newdf=newdf[X_train.columns]	
     yp=nb.predict(newdf)
     if (yp[0]=='Y'):
-        a="Your Loan is approved, Please contact at HDFC Bank Any Branch for further processing"
+        a="Your Loan is approved, Please contact at San-era Bank of Any Branch for further processing"
     else:
         a ="Sorry ! Your Loan is not approved"
        
