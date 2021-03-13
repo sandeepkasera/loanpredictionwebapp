@@ -2,18 +2,9 @@ import numpy as np
 import pandas as pd
 from flask import Flask, request, jsonify, render_template
 import pandas as pd
-
 from sklearn.model_selection import train_test_split
-
 from sklearn.linear_model import LogisticRegression
-
 from sklearn.naive_bayes import GaussianNB
-
-#import pickle
-
-
-
-
 
 app = Flask(__name__)
 #model = pickle.load(open('model.pkl', 'rb'))
@@ -66,8 +57,7 @@ def predict():
         a ="Sorry ! Your Loan is not approved"
        
    
-   
-
+  
     return render_template('index.html', prediction_text='{}'.format(a),ReCheck="Re-Check")
 
 
